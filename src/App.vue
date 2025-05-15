@@ -4,7 +4,7 @@ import Navigation from './components/Navigation.vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const hideHeader = computed(() => route.path === '/login')
+const hideHeader = computed(() => route.path === '/login' || route.path === '/callback')
 </script>
 
 <template>
