@@ -1,9 +1,3 @@
-<script>
-export default {
-  name: 'AppSearchbar',
-}
-</script>
-
 <template>
   <div class="searchbar-container">
     <div class="searchbar-content">
@@ -11,6 +5,12 @@ export default {
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'AppSearchbar',
+}
+</script>
 
 <style scoped>
 .searchbar-container {
