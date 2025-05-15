@@ -16,7 +16,14 @@ a {
 
 @media (min-width: 1024px) {
   header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    right: 0;
   }
 
   #app {
