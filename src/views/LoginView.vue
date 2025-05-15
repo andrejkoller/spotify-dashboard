@@ -12,10 +12,13 @@
 
 <style>
 @media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
+  .login-container {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    width: 100%;
   }
 }
 </style>
