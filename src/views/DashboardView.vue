@@ -1,13 +1,13 @@
 <template>
   <main class="dashboard">
     <div class="dashboard-header">
-      <Searchbar />
+      <Searchbar :tracks="tracks" @search="handleSearch" />
     </div>
     <div class="dashboard-container">
       <div class="dashboard-content">
         <div class="spotify-top-tracks">
           <SongCard
-            v-for="(track, index) in topTracks"
+            v-for="(track, index) in filteredTracks"
             :key="index"
             :track="track"
             :index="index"
@@ -18,27 +18,42 @@
   </main>
 </template>
 
-<script setup>
+<script>
 import Searchbar from '@/components/Searchbar.vue'
 import SongCard from '@/components/SongCard.vue'
 import { fetchTopTracks } from '@/services/spotifyService'
-import { onMounted, ref } from 'vue'
 
-const topTracks = ref([])
-
-onMounted(async () => {
-  const token = localStorage.getItem('spotify_token')
-  if (token) {
-    const data = await fetchTopTracks(token)
-    if (data) {
-      topTracks.value = data.items
-    } else {
-      console.error('Failed to fetch top tracks')
+export default {
+  components: {
+    Searchbar,
+    SongCard,
+  },
+  data() {
+    return {
+      tracks: [],
+      filteredTracks: [],
     }
-  } else {
-    console.error('No access token found in local storage')
-  }
-})
+  },
+  async mounted() {
+    const token = localStorage.getItem('spotify_token')
+    if (token) {
+      const data = await fetchTopTracks(token)
+      if (data) {
+        this.tracks = data.items
+        this.filteredTracks = data.items
+      } else {
+        console.error('Failed to fetch top tracks')
+      }
+    } else {
+      console.error('No access token found in local storage')
+    }
+  },
+  methods: {
+    handleSearch(filtered) {
+      this.filteredTracks = filtered
+    },
+  },
+}
 </script>
 
 <style scoped>

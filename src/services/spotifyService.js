@@ -11,6 +11,5 @@ export async function fetchTopTracks(token) {
   }
 
   const data = await response.json()
-  console.log('Spotify API response:', data)
   return data
 }
