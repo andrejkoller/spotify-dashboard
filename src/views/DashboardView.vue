@@ -5,13 +5,18 @@
     </div>
     <div class="dashboard-container">
       <div class="dashboard-content">
-        <div class="spotify-top-tracks">
+        <div class="spotify-top-tracks" v-if="filteredTracks.length > 0">
           <SongCard
             v-for="(track, index) in filteredTracks"
             :key="index"
             :track="track"
             :index="index"
           />
+        </div>
+        <div class="spotify-notification" v-else>
+          <p>
+            No tracks found. Please try a different search term or check your Spotify access token.
+          </p>
         </div>
       </div>
     </div>

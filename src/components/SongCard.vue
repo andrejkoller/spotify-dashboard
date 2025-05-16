@@ -21,7 +21,9 @@
         </div>
         <div class="song-card-duration">
           <v-card-text>
-            <p>{{ (track.duration_ms / 60000).toFixed(2) }}</p>
+            <span>{{ (track.duration_ms / 60000).toFixed(2).charAt(0) }}</span>
+            <span>:</span>
+            <span>{{ (track.duration_ms / 60000).toFixed(2).slice(2, 4) }}</span>
           </v-card-text>
         </div>
       </v-card>

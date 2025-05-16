@@ -33,7 +33,8 @@ export default {
       const filtered = this.tracks.filter(
         (track) =>
           track.name.toLowerCase().includes(query) ||
-          track.artists.some((artist) => artist.name.toLowerCase().includes(query)),
+          track.artists.some((artist) => artist.name.toLowerCase().includes(query)) ||
+          track.album.name.toLowerCase().includes(query),
       )
       this.$emit('search', filtered)
     },
